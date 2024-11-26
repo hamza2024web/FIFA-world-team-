@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#all {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.terain {
+    background-image:url(../img/stadium_background.webp);
+    margin: 5px 5px 5px 5px;
+    width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cards {
+    width: 40%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-button {
+    background-color: #28a745;
+    width: 250px;
+    height: 40px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#form input[type="text"],
+#form input[type="file"] {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+#form input[type="text"]:focus,
+#form input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+#form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#form button[type="submit"]:active {
+    background-color: #00408b;
+}
+.card-about:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-list{
+    display: flex;
+    flex-direction: column;
+}
+.card-about.is-dragging {
+    background-color: orangered;
+    color: white;
+}
+
+.terain .card-player {
+    width: 150px; 
+    height: 150px; 
+    background-image: url('../img/badge_gold.webp'); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center;  
+    border-radius: 10px; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.terain .card-player .card-image img{
+    width: 60px;
+    height: 70px;
+    margin-top: 25px;
+    z-index: 1;
+}
+.terain .card-player .card-image {
+    display: flex;
+}
+.terain .card-player .card-image .reting{
+    margin-top: 30px;
+    width: 10px;
+    height: fit-content;
+    z-index: 2;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+}
+.terain .card-player .card-statics {
+
+    display: flex;
+    width: fit-content;
+    gap: 2px;
+    margin-left: 1px;
+}
+.terain .card-player .card-statics .pace, .shooting, .passing,
+.dribbling, .defending, .physical ,.name{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 7px;
+    text-align: center;
+}
+.terain .card-player .card-team img{
+    width: 15px;
+    height: 12px;
+    margin-bottom: 2px;
+}
+.terain .card-player .card-team{
+    width: fit-content;
+    height: fit-content;
+    
+}
+.formation {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: end;
+    width: 60vw;
+}
+.parent-formation{
+    width: 52vw;
+    display: flex;
+    justify-content: center;
+}
+
