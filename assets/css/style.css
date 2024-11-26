@@ -4,23 +4,15 @@
     padding: 0;
 }
 
-#all {
+#terain-and-form {
     display: flex;
     width: 100vw;
     height: 100vh;
 }
 
-.terain {
-    background-image:url(../img/stadium_background.webp);
-    margin: 5px 5px 5px 5px;
-    width: 60%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 .cards {
-    width: 40%;
-    padding: 20px;
-    background-color: #fff;
+    width: 38%;
+    background-color: rgb(103, 186, 103);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -44,8 +36,7 @@
 }
 
 #form {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
     background-color: #f9f9f9;
     border-radius: 15px;
     padding: 20px;
@@ -58,11 +49,31 @@
     font-size: 14px;
     font-weight: bold;
     color: #555;
-    margin-bottom: 5px;
+    margin-top: inherit;
 }
 
 #form input[type="text"],
 #form input[type="file"] {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+#form select {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+#form option {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 12px;
@@ -99,21 +110,22 @@
 #form button[type="submit"]:active {
     background-color: #00408b;
 }
-.card-about:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
 
 .card-list{
     display: flex;
     flex-direction: column;
 }
-.card-about.is-dragging {
-    background-color: orangered;
-    color: white;
-}
 
-.terain .card-player {
+.terain {
+    background-image:url(../img/stadium_background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 5px 5px 5px 5px;
+    width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+.card-player {
     width: 150px; 
     height: 150px; 
     background-image: url('../img/badge_gold.webp'); 
@@ -126,16 +138,16 @@
     flex-direction: column;
     align-items: center;
 }
-.terain .card-player .card-image img{
+.card-image img{
     width: 60px;
     height: 70px;
     margin-top: 25px;
     z-index: 1;
 }
-.terain .card-player .card-image {
+.card-image {
     display: flex;
 }
-.terain .card-player .card-image .reting{
+.reting{
     margin-top: 30px;
     width: 10px;
     height: fit-content;
@@ -143,38 +155,57 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 10px;
 }
-.terain .card-player .card-statics {
+.card-statics {
 
     display: flex;
     width: fit-content;
     gap: 2px;
     margin-left: 1px;
 }
-.terain .card-player .card-statics .pace, .shooting, .passing,
+.card-statics .pace, .shooting, .passing,
 .dribbling, .defending, .physical ,.name{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 7px;
     text-align: center;
 }
-.terain .card-player .card-team img{
+.card-team img{
     width: 15px;
     height: 12px;
     margin-bottom: 2px;
 }
-.terain .card-player .card-team{
+.card-team{
     width: fit-content;
     height: fit-content;
     
 }
-.formation {
+.attack , .milieu{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: end;
-    width: 60vw;
+    width: 55vw;
 }
-.parent-formation{
-    width: 52vw;
+.deffence{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 10px;
+    width: 69vw;
+    margin-top: 45px;
+}
+.goal-keaper{
     display: flex;
     justify-content: center;
+    width: 62vw;
+    margin-top: 20px;
 }
-
+.parent-formation{
+    width: 60vw;
+}
+.substition{
+    background-color: rgb(134, 195, 134);
+    margin: 5px 5px 5px 5px;
+    border-radius: 15px;
+}
+.substition{
+    display: flex;
+    flex-wrap: wrap;
+}
