@@ -125,7 +125,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
-.card-player {
+.card-player, .card-player-all {
     width: 150px; 
     height: 150px; 
     background-image: url('../img/badge_gold.webp'); 
@@ -204,8 +204,21 @@
     background-color: rgb(134, 195, 134);
     margin: 5px 5px 5px 5px;
     border-radius: 15px;
-}
-.substition{
     display: flex;
     flex-wrap: wrap;
+}
+
+.all-players{
+    background-color: rgb(134, 195, 134);
+    margin: 5px 5px 5px 5px;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; 
+    text-align: left; 
 }
