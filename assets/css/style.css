@@ -252,8 +252,8 @@
     margin: 5px 5px 5px 5px;
     border-radius: 15px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    width: 62.5%;
 }
 
 .all-players{
@@ -264,10 +264,15 @@
     flex-wrap: wrap;
     width: 62.5%;
 }
-.section-title {
+.cards .substition h1{
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    margin-top: 8px;
     margin-bottom: 10px; 
-    text-align: left; 
+    text-align: center;
+}
+.substition .card-substition{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }

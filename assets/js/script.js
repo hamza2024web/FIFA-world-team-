@@ -15,16 +15,15 @@ let switchSelect = document.getElementById("position");
 switchSelect.addEventListener("change",switchBySelect);
 
 function switchBySelect(e){
-    console.log(e.target)
     if(e.target.value === "GK"){
         document.getElementById('inputs-gk').style.display = "flex";
+        document.getElementById('inputs-rest').style.display = "none";
     }
      else  {
         document.getElementById('inputs-rest').style.display = "flex";
+        document.getElementById('inputs-gk').style.display = "none"
     }
 }
-
-
 
 let allCards = [];
 fetch('../../players.json')
