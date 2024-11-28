@@ -4,11 +4,27 @@ window.onload = function () {
 
 function asd(a) {
     if (a === 1) {
-        document.getElementById("form").style.display = "grid";
+        document.getElementById("form").style.display = "flex";
+        document.getElementById('add-button').style.display = "none"
     } else {
         document.getElementById("form").style.display = "none";
     }
 }
+
+let switchSelect = document.getElementById("position");
+switchSelect.addEventListener("change",switchBySelect);
+
+function switchBySelect(e){
+    console.log(e.target)
+    if(e.target.value === "GK"){
+        document.getElementById('inputs-gk').style.display = "flex";
+    }
+     else  {
+        document.getElementById('inputs-rest').style.display = "flex";
+    }
+}
+
+
 
 let allCards = [];
 fetch('../../players.json')
