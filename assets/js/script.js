@@ -135,9 +135,12 @@ function displaycards (cards){
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        formValid();
-
         const fd = new FormData(form);
+
+        if (!formValid(fd)) {
+            return; 
+        }
+
         const imageFile = fd.get('image');
         const logoFile = fd.get('logo');
         const flagFile = fd.get('flag');
@@ -163,7 +166,13 @@ function displaycards (cards){
                         passing: fd.get('passing'),
                         dribbling: fd.get('dribbling'),
                         defending: fd.get('defending'),
-                        physical: fd.get('physical')
+                        physical: fd.get('physical'),
+                        diving: fd.get('diving'),       
+                        handling: fd.get('handling'),   
+                        kicking: fd.get('kicking'),      
+                        reflexes: fd.get('reflexes'),    
+                        speed: fd.get('speed'),         
+                        positioning: fd.get('positioning')
                     };
                     dataArray.push(obj);
         
@@ -241,75 +250,56 @@ function displaycards (cards){
         }
     });
 
-    function formValid (){
-        const formInput = document.querySelector('#form');
-        const fv = new FormData(formInput);
+    function formValid(fd) {
+        
+        console.log(fd.get('position'));
 
-        if (fv.get('name') === '' || fv.get('name') === null){
-            alert("The input name is required");
+        let isValid = true;
+    
+        if (!fd.get('name') || fd.get('name').trim() === '') {
+            alert("The input name is required.");
+            isValid = false;
+        } else if (fd.get('name').length > 50) {
+            alert("The input name must be less than 50 characters.");
+            isValid = false;
         }
-        if (fv.get('name').length > 50){
-            alert("the input name must be less than 50 caractere")
+    
+        if (!fd.get('nationality') || fd.get('nationality').trim() === '') {
+            alert("The input nationality is required.");
+            isValid = false;
         }
-        if (fv.get('nationality') === '' || fv.get('nationality') === null){
-            alert("the input nationality is rquired");
+    
+        if (!fd.get('club') || fd.get('club').trim() === '') {
+            alert("The input club is required.");
+            isValid = false;
         }
-        if (fv.get('club') === '' || fv.get('club') === null){
-            alert("the input club is required");
+    
+        if (fd.get('position') === 'GK') {
+            isValid &= validateNumber(fd.get('diving'), 10, 99, "diving");
+            isValid &= validateNumber(fd.get('handling'), 10, 99, "handling");
+            isValid &= validateNumber(fd.get('kicking'), 10, 99, "kicking");
+            isValid &= validateNumber(fd.get('reflexes'), 10, 99, "reflexes");
+            isValid &= validateNumber(fd.get('speed'), 10, 99, "speed");
+            isValid &= validateNumber(fd.get('positioning'), 10, 99, "positioning");
+        } else {
+            isValid &= validateNumber(fd.get('pace'), 10, 99, "pace");
+            isValid &= validateNumber(fd.get('shooting'), 10, 99, "shooting");
+            isValid &= validateNumber(fd.get('passing'), 10, 99, "passing");
+            isValid &= validateNumber(fd.get('dribbling'), 10, 99, "dribbling");
+            isValid &= validateNumber(fd.get('defending'), 10, 99, "defending");
+            isValid &= validateNumber(fd.get('physical'), 10, 99, "physical");
         }
+    
+        return isValid;
+    }
 
-        const rating = parseInt(fv.get('rating'));
-        if (isNaN (rating) < 10 || isNaN (rating)>100 ){
-            alert("the input rating must be between 10 and 99");
+    function validateNumber(value, min, max, fieldName) {
+        const number = parseInt(value);
+        if (isNaN(number) || number < min || number > max) {
+            alert(`The input ${fieldName} must be a number between ${min} and ${max}.`);
+            return false;
         }
-        const diving = parseInt(fv.get('diving'));
-        if (isNaN (diving) < 10 || isNaN (rating) >100){
-            alert("the input diving must be between 10 and 99");
-        }
-        const handling = parseInt(fv.get('handling'));
-        if (isNaN (handling) < 10 || isNaN (handling) >100){
-            alert("the input handling must be between 10 and 99");
-        }
-        const kicking = parseInt(fv.get('kicking'));
-        if (isNaN (kicking) < 10 || isNaN (kicking) >100){
-            alert("the input kicking must be between 10 and 99");
-        }
-        const reflexes = parseInt(fv.get('reflexes'));
-        if (isNaN (reflexes) < 10 || isNaN (reflexes) >100){
-            alert("the input reflexes must be between 10 and 99");
-        }
-        const speed = parseInt(fv.get('speed'));
-        if (isNaN (speed) < 10 || isNaN (speed) >100){
-            alert("the input speed must be between 10 and 99");
-        }
-        const positioning = parseInt(fv.get('positioning'));
-        if (isNaN (positioning) < 10 || isNaN (positioning) >100){
-            alert("the input positioning must be between 10 and 99");
-        }
-        const pace = parseInt(fv.get('pace'));
-        if (isNaN (pace) < 10 || isNaN (pace) >100){
-            alert("the input pace must be between 10 and 99");
-        }
-        const shooting = parseInt(fv.get('shooting'));
-        if (isNaN (shooting) < 10 || isNaN (shooting) >100){
-            alert("the input shooting must be between 10 and 99");
-        }
-        const passing = parseInt(fv.get('passing'));
-        if (isNaN (passing) < 10 || isNaN (passing) >100){
-            alert("the input passing must be between 10 and 99");
-        }
-        const dribbling = parseInt(fv.get('dribbling'));
-        if (isNaN (dribbling) < 10 || isNaN (dribbling) >100){
-            alert("the input dribbling must be between 10 and 99");
-        }
-        const defending = parseInt(fv.get('defending'));
-        if (isNaN (defending) < 10 || isNaN (defending) >100){
-            alert("the input defending must be between 10 and 99");
-        }
-        const physical = parseInt(fv.get('physical'));
-        if (isNaN (physical) < 10 || isNaN (physical) >100){
-            alert("the input physical must be between 10 and 99");
-        }
+        return true;
     }
 
 
@@ -317,48 +307,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const draggableItems = document.querySelectorAll('.card-player');
     const dropZones = document.querySelectorAll('.substition, .attack, .milieu, .deffence, .goal-keaper');
 
-    // Handle drag start
     draggableItems.forEach(item => {
         item.addEventListener('dragstart', () => {
-            item.classList.add('dragging'); // Mark as dragging
+            item.classList.add('dragging'); 
         });
 
         item.addEventListener('dragend', () => {
-            item.classList.remove('dragging'); // Remove dragging mark
+            item.classList.remove('dragging'); 
         });
     });
 
-    // Handle drag over and drop
+
     dropZones.forEach(zone => {
         zone.addEventListener('dragover', e => {
-            e.preventDefault(); // Allow drop
+            e.preventDefault(); 
             const draggingItem = document.querySelector('.dragging');
             
             if (draggingItem) {
-                // Highlight the drop zone or placeholder (optional)
                 zone.classList.add('hovered'); 
             }
         });
         zone.addEventListener('drop', e => {
-            e.preventDefault(); // Prevent default drop behavior
+            e.preventDefault(); 
             const draggingItem = document.querySelector('.dragging');
 
             if (draggingItem) {
-                // Add the dragged item into the drop zone
-                const targetCard = e.target.closest('.card-player'); // Check if dropping into another card
+                
+                const targetCard = e.target.closest('.card-player'); 
 
                 if (targetCard) {
                     targetCard.appendChild(draggingItem);
                 } else {
-                    zone.appendChild(draggingItem); // Otherwise, append to the zone
+                    zone.appendChild(draggingItem); 
                 }
             }
 
-            // Remove highlight after drop
             zone.classList.remove('hovered');
         });
     });
 });
-
-
-
