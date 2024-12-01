@@ -252,8 +252,6 @@ function displaycards (cards){
 
     function formValid(fd) {
         
-        console.log(fd.get('position'));
-
         let isValid = true;
     
         if (!fd.get('name') || fd.get('name').trim() === '') {
@@ -275,6 +273,7 @@ function displaycards (cards){
         }
     
         if (fd.get('position') === 'GK') {
+            isValid &= validateNumber(fd.get('rating'), 10, 99, "rating");
             isValid &= validateNumber(fd.get('diving'), 10, 99, "diving");
             isValid &= validateNumber(fd.get('handling'), 10, 99, "handling");
             isValid &= validateNumber(fd.get('kicking'), 10, 99, "kicking");
@@ -282,6 +281,7 @@ function displaycards (cards){
             isValid &= validateNumber(fd.get('speed'), 10, 99, "speed");
             isValid &= validateNumber(fd.get('positioning'), 10, 99, "positioning");
         } else {
+            isValid &= validateNumber(fd.get('rating'), 10, 99, "rating");
             isValid &= validateNumber(fd.get('pace'), 10, 99, "pace");
             isValid &= validateNumber(fd.get('shooting'), 10, 99, "shooting");
             isValid &= validateNumber(fd.get('passing'), 10, 99, "passing");

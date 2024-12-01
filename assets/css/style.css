@@ -100,7 +100,7 @@
 }
 
 #form input[type="text"],
-#form input[type="file"],#form input[type="numbre"] {
+#form input[type="file"],#form input[type="number"] {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 12px;
