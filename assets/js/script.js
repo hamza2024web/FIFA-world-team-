@@ -137,9 +137,7 @@ function displaycards (cards){
 
         const fd = new FormData(form);
 
-        if (!formValid(fd)) {
-            return; 
-        }
+
 
         const imageFile = fd.get('image');
         const logoFile = fd.get('logo');
@@ -178,14 +176,14 @@ function displaycards (cards){
         
                     const ajoutCard = document.querySelector(".all-players");
                     const cardPlayerAjout = document.createElement("card-player-all-players");
-                    cardPlayerAjout.className = "cardPlayerAjout";
+                    // cardPlayerAjout.className = "cardPlayerAjout";
                     cardPlayerAjout.innerHTML =  `
                         <div class="card-player" draggable="true">
                             <div class="card-image">
                                 <div class="reting">
                                 <p>${obj.rating}</p>
                                 <p>${obj.position}</p>
-                            </div>
+                                </div>
                                 <img src="${obj.photo}" alt="${obj.name}">
                                 </div>
                             <div class="name">
@@ -221,13 +219,17 @@ function displaycards (cards){
                                 <img src="${obj.flag}" alt="${obj.nationality}">
                                 <img src="${obj.logo}" alt="${obj.club}">
                             </div>
+                            <button class="delete-btn">Supprimer</button>
                         </div>
         
                     `;
                     ajoutCard.appendChild(cardPlayerAjout);
+                    const deleteBtn = cardPlayerAjout.querySelector('.delete-btn');
+                    deleteBtn.addEventListener('click', () => {
+                    cardPlayerAjout.remove(); 
+                    });
                     document.getElementById("form").style.display = "none";
                     form.reset();
-                    draggingElements();
                 }
             }
         };
@@ -247,6 +249,10 @@ function displaycards (cards){
             reader3.readAsDataURL(flagFile);
         } else {
             alert('please select an image to upload.')
+        }
+        
+        if (!formValid(fd)) {
+            return; 
         }
     });
 
@@ -273,7 +279,6 @@ function displaycards (cards){
         }
     
         if (fd.get('position') === 'GK') {
-            isValid &= validateNumber(fd.get('rating'), 10, 99, "rating");
             isValid &= validateNumber(fd.get('diving'), 10, 99, "diving");
             isValid &= validateNumber(fd.get('handling'), 10, 99, "handling");
             isValid &= validateNumber(fd.get('kicking'), 10, 99, "kicking");
@@ -346,3 +351,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+draggingElements();
