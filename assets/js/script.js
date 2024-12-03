@@ -2,7 +2,7 @@ window.onload = function () {
     document.getElementById("form").style.display = "none";
 };
 
-function asd(a) {
+function displayForm(a) {
     if (a === 1) {
         document.getElementById("form").style.display = "flex";
     } else {
@@ -137,7 +137,9 @@ function displaycards (cards){
 
         const fd = new FormData(form);
 
-
+        if (!formValid(fd)) {
+            return; 
+        }
 
         const imageFile = fd.get('image');
         const logoFile = fd.get('logo');
@@ -176,7 +178,7 @@ function displaycards (cards){
         
                     const ajoutCard = document.querySelector(".all-players");
                     const cardPlayerAjout = document.createElement("card-player-all-players");
-                    // cardPlayerAjout.className = "cardPlayerAjout";
+                    cardPlayerAjout.className = "card-player";
                     cardPlayerAjout.innerHTML =  `
                         <div class="card-player" draggable="true">
                             <div class="card-image">
@@ -224,6 +226,7 @@ function displaycards (cards){
         
                     `;
                     ajoutCard.appendChild(cardPlayerAjout);
+                    dragAndDropToAdd(cardPlayerAjout);
                     const deleteBtn = cardPlayerAjout.querySelector('.delete-btn');
                     deleteBtn.addEventListener('click', () => {
                     cardPlayerAjout.remove(); 
@@ -249,10 +252,6 @@ function displaycards (cards){
             reader3.readAsDataURL(flagFile);
         } else {
             alert('please select an image to upload.')
-        }
-        
-        if (!formValid(fd)) {
-            return; 
         }
     });
 
@@ -352,3 +351,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 draggingElements();
+
+function dragAndDropToAdd(item) {
+    item.addEventListener('dragstart', () => {
+        item.classList.add('dragging');
+    });
+
+    item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
+    });
+}
+
+
